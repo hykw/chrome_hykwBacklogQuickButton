@@ -43,7 +43,9 @@ document.getElementById('limit_minus7').onclick = function() {
 function setDateInCallBack(plusDate)
 {
   chrome.tabs.executeScript(null, {
-    "code": "document.getElementsByName('switchStatusIssue.limitDate')[1].value"
+    "code": "var obj = document.getElementsByName('switchStatusIssue.limitDate');" +
+       "if (obj.length == 0) { document.getElementById('limitDate').value; " +
+       "} else { obj[1].value; }"
   }, function (strdate) {
     if (strdate == "") {
       var date = new Date();
