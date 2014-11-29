@@ -1,17 +1,10 @@
 
 // 完了ボタン
 document.getElementById('close').onclick = function() {
-  chrome.tabs.executeScript(null, {
-    "code": "document.getElementsByName('switchStatusIssue.statusId')[3].click();"
-  }, function() {
-    chrome.tabs.executeScript(null, {
-      "code": "document.getElementById('submitbtn').click();"
-    });
-  });
-
+  chrome.tabs.executeScript(null, {"file": "submit.js"});
 }
 
-
+// 期限ボタン
 document.getElementById('limit_tomorrow').onclick = function() {
   var date = new Date();
   setDate(date, 1);
