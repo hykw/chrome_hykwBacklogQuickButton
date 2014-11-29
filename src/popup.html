@@ -7,28 +7,33 @@
   li { margin-bottom: 10px; }
   h2 { margin-bottom: -10px; }
 
+  .space10 { margin-left: 10px; }
+  .space20 { margin-left: 20px; }
+  .space30 { margin-left: 30px; }
+  .space40 { margin-left: 40px; }
+  .space50 { margin-left: 50px; }
+
 </style>
 
 
 </head>
-<body style="min-width:350px;">
+<body style="min-width: 350px;">
 
 <hr />
 <h3>期限日変更
 <ul>
 <li> <button type="button" id="limit_tomorrow">&gt; 明日</button>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="space10"></span>
 <button type="button" id="limit_nextweek">↓ 来週</button>
-&nbsp;&nbsp;&nbsp;
+<span class="space20"></span>
+<button type="button" id="limit_nextmonday">→ 月曜</button>
+<span class="space40"></span>
 <button type="button" id="limit_today">&lt; 今日 &gt;</button></li>
 
 <li> <button type="button" id="limit_plus1">+1日</button>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <button type="button" id="limit_plus7">+7日</button></li>
 
-<li> <button type="button" id="limit_minus1">-1日</button>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" id="limit_minus7">-7日</button></li>
 </ul>
 
 <hr />

@@ -1,5 +1,5 @@
 
-
+// 完了ボタン
 document.getElementById('close').onclick = function() {
   chrome.tabs.executeScript(null, {
     "code": "document.getElementsByName('switchStatusIssue.statusId')[3].click();"
@@ -24,6 +24,12 @@ document.getElementById('limit_nextweek').onclick = function() {
 document.getElementById('limit_today').onclick = function() {
   var date = new Date();
   setDate(date, 0);
+}
+document.getElementById('limit_nextmonday').onclick = function() {
+  var date = new Date();
+
+  var days_nextMonday = 8 - date.getDay(); // 次の月曜日までの日数
+  setDate(date, days_nextMonday);
 }
 
 document.getElementById('limit_plus1').onclick = function() {
