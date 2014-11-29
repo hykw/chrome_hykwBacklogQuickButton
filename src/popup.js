@@ -74,29 +74,10 @@ function setDate(date, plusDate) {
   var date = date.getDate();
   var strdate = year + "/" + month + "/" + date;
 
-  chrome.tabs.executeScript(null, {
-    "code": "document.getElementsByName('switchStatusIssue.limitDate')[1].value = '" + strdate + "'"
-  }, function() {
-	//http://stackoverflow.com/questions/20381407/fire-onchange-event-on-page-from-google-chrome-extension
-    chrome.tabs.executeScript(null, {
-      "code": "var changeEvent = document.createEvent('HTMLEvents'); "+
-              "changeEvent.initEvent('change', true, true); "+
-              "document.getElementsByName('switchStatusIssue.limitDate')[1].dispatchEvent(changeEvent);"
-    });
+  chrome.tabs.executeScript(null, {"file": "inject.js"});
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {strdate: strdate});
   });
-
-  chrome.tabs.executeScript(null, {
-    "code": "document.getElementsByName('switchStatusIssue.limitDate')[0].value = '" + strdate + "'"
-  }, function() {
-    chrome.tabs.executeScript(null, {
-      "code": "var changeEvent = document.createEvent('HTMLEvents'); "+
-              "changeEvent.initEvent('change', true, true); "+
-              "document.getElementsByName('switchStatusIssue.limitDate')[0].dispatchEvent(changeEvent);"
-    });
-  });
-
-
-
 }
 
 
