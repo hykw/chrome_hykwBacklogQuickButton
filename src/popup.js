@@ -4,6 +4,12 @@ document.getElementById('close').onclick = function() {
   chrome.tabs.executeScript(null, {"file": "submit.js"});
 }
 
+// 登録ボタン
+document.getElementById('button_regist').onclick = function() {
+  chrome.tabs.executeScript(null, {"file": "button.js"});
+}
+
+
 // 期限ボタン
 document.getElementById('limit_tomorrow').onclick = function() {
   var date = new Date();
