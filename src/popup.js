@@ -14,11 +14,15 @@ document.getElementById('button_regist').onclick = function() {
 document.getElementById('limit_tomorrow').onclick = function() {
   var date = new Date();
   setDate(date, 1);
+
+  chrome.tabs.executeScript(null, {"file": "button.js"});
 }
 
 document.getElementById('limit_nextweek').onclick = function() {
   var date = new Date();
   setDate(date, 7);
+
+  chrome.tabs.executeScript(null, {"file": "button.js"});
 }
 document.getElementById('limit_today').onclick = function() {
   var date = new Date();
@@ -29,6 +33,8 @@ document.getElementById('limit_nextmonday').onclick = function() {
 
   var days_nextMonday = 8 - date.getDay(); // 次の月曜日までの日数
   setDate(date, days_nextMonday);
+
+  chrome.tabs.executeScript(null, {"file": "button.js"});
 }
 
 document.getElementById('limit_plus1').onclick = function() {
