@@ -13,28 +13,22 @@ document.getElementById('button_regist').onclick = function() {
 // 期限ボタン
 document.getElementById('limit_tomorrow').onclick = function() {
   var date = new Date();
-  setDate(date, 1);
-
-  chrome.tabs.executeScript(null, {"file": "button.js"});
+  setDate(date, 1, TRUE);
 }
 
 document.getElementById('limit_nextweek').onclick = function() {
   var date = new Date();
-  setDate(date, 7);
-
-  chrome.tabs.executeScript(null, {"file": "button.js"});
+  setDate(date, 7, TRUE);
 }
 document.getElementById('limit_today').onclick = function() {
   var date = new Date();
-  setDate(date, 0);
+  setDate(date, 0, FALSE);
 }
 document.getElementById('limit_nextmonday').onclick = function() {
   var date = new Date();
 
   var days_nextMonday = 8 - date.getDay(); // 次の月曜日までの日数
-  setDate(date, days_nextMonday);
-
-  chrome.tabs.executeScript(null, {"file": "button.js"});
+  setDate(date, days_nextMonday, TRUE);
 }
 
 document.getElementById('limit_plus1').onclick = function() {
@@ -68,12 +62,12 @@ function setDateInCallBack(plusDate)
     }
     
     var pluseddate = new Date(arDate[0], parseInt(arDate[1])-1, arDate[2]);
-    setDate(pluseddate, plusDate);
+    setDate(pluseddate, plusDate, FALSE);
   });
 }
 
 
-function setDate(date, plusDate) {
+function setDate(date, plusDate, isExecuteButtonJS) {
   date.setDate(date.getDate()+plusDate);
 
   var year = date.getFullYear();
@@ -84,6 +78,10 @@ function setDate(date, plusDate) {
   chrome.tabs.executeScript(null, {"file": "inject.js"});
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {strdate: strdate});
+
+    if (isExecuteButtonJS == TRUE)
+      chrome.tabs.executeScript(null, {"file": "button.js"});
   });
+
 }
 
