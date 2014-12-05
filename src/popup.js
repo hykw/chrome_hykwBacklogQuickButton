@@ -79,8 +79,10 @@ function setDate(date, plusDate, isExecuteButtonJS) {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {strdate: strdate});
 
+/*
     if (isExecuteButtonJS == TRUE)
       chrome.tabs.executeScript(null, {"file": "button.js"});
+*/
   });
 
 }
